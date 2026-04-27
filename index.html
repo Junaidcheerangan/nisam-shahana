@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Junaid & Bride — Nikah Ceremony</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Cinzel:wght@400;500;600&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+    :root {
+      --cream: #f5ede0;
+      --parchment: #ede0cc;
+      --gold: #c9a84c;
+      --gold-light: #e2c97a;
+      --gold-deep: #a87d2a;
+      --rust: #b07040;
+      --text: #e8d9b0;
+      --soft: #d4b866;
+      --green-dark: #0d2b20;
+      --green-mid: #153828;
+      --green-marble: #1a3d2b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse 900px 600px at 20% 30%, rgba(10, 50, 30, 0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 800px at 80% 70%, rgba(5, 30, 18, 0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 400px at 60% 10%, rgba(20, 60, 38, 0.4) 0%, transparent 60%),
+        linear-gradient(160deg, #0c2318 0%, #163022 25%, #0e2a1c 50%, #112818 75%, #0a1f14 100%);
+      min-height: 100vh;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(10, 30, 18, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.35);
+    }
+
+    .nav-monogram {
+      font-family: 'Dancing Script', cursive;
+      font-size: 30px;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Petal animation */
+    .petal {
+      position: fixed;
+      width: 12px;
+      height: 18px;
+      border-radius: 50% 0 50% 0;
+      opacity: 0;
+      animation: petalFall linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes petalFall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      90% {
+        opacity: 0.3;
+      }
+
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* CARD */
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      background:
+        radial-gradient(ellipse 340px 260px at 18% 22%, rgba(22, 68, 44, 0.70) 0%, transparent 65%),
+        radial-gradient(ellipse 260px 340px at 82% 65%, rgba(12, 42, 26, 0.75) 0%, transparent 65%),
+        radial-gradient(ellipse 400px 220px at 55% 90%, rgba(18, 55, 35, 0.60) 0%, transparent 65%),
+        radial-gradient(ellipse 300px 200px at 70% 15%, rgba(30, 78, 50, 0.45) 0%, transparent 60%),
+        linear-gradient(155deg, #122a1c 0%, #0e2418 30%, #163222 55%, #0c2016 80%, #111e15 100%);
+      border-radius: 2px;
+      overflow: hidden;
+      text-align: center;
+      padding: 70px 50px 55px;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(201, 168, 76, 0.25),
+        inset 0 0 80px rgba(10, 30, 18, 0.4);
+      animation: cardReveal 1.2s ease both;
+      z-index: 2;
+    }
+
+    @keyframes cardReveal {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 280px 200px at 15% 25%, rgba(201, 168, 76, 0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 200px 280px at 85% 60%, rgba(160, 200, 140, 0.03) 0%, transparent 70%),
+        radial-gradient(ellipse 320px 180px at 50% 85%, rgba(201, 168, 76, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* FLORAL CORNERS */
+    .floral {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      pointer-events: none;
+    }
+
+    .floral-tl {
+      top: -15px;
+      left: -15px;
+    }
+
+    .floral-tr {
+      top: -15px;
+      right: -15px;
+      transform: scaleX(-1);
+    }
+
+    .floral-bl {
+      bottom: -15px;
+      left: -15px;
+    }
+
+    .floral-br {
+      bottom: -15px;
+      right: -15px;
+      transform: scaleX(-1);
+    }
+
+    /* CONTENT */
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .bismillah-arabic {
+      font-size: 36px;
+      color: var(--gold);
+      line-height: 1.3;
+      font-family: 'Scheherazade New', 'Traditional Arabic', serif;
+      animation: fadeUp 1s 0.3s both;
+    }
+
+    .bismillah-en {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-top: 6px;
+      line-height: 1.8;
+      animation: fadeUp 1s 0.5s both;
+    }
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+      margin: 16px auto;
+      animation: fadeUp 1s 0.6s both;
+    }
+
+    .divider-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 14px auto;
+      animation: fadeUp 1s 0.6s both;
+    }
+
+    .divider-ornament span {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light));
+    }
+
+    .divider-ornament span:last-child {
+      background: linear-gradient(270deg, transparent, var(--gold-light));
+    }
+
+    .divider-ornament i {
+      color: var(--gold-light);
+      font-size: 10px;
+    }
+
+    .together {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3.5px;
+      color: var(--gold);
+      margin-bottom: 12px;
+      animation: fadeUp 1s 0.7s both;
+    }
+
+    .name-script {
+      font-family: 'Dancing Script', cursive;
+      font-size: 58px;
+      color: var(--gold);
+      line-height: 1.05;
+      text-shadow: 0 2px 14px rgba(201, 168, 76, 0.25);
+    }
+
+    .name-label {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-top: 3px;
+    }
+
+    .ampersand {
+      font-family: 'Dancing Script', cursive;
+      font-size: 48px;
+      color: var(--gold);
+      display: block;
+      margin: 4px 0;
+    }
+
+    .invite-text {
+      font-family: 'Cinzel', serif;
+      font-size: 9.5px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      line-height: 1.9;
+      margin-top: 18px;
+    }
+
+    /* DATE BLOCK */
+    .date-block {
+      margin: 20px auto 0;
+      width: 280px;
+    }
+
+    .date-month {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 6px;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .date-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 8px 0 3px;
+    }
+
+    .date-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--gold-light);
+    }
+
+    .date-inner {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 0 14px;
+    }
+
+    .date-day-name {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .date-num {
+      font-family: 'Cinzel', serif;
+      font-size: 40px;
+      color: var(--gold);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .date-time {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .date-year {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 5px;
+      color: var(--gold);
+      margin-top: 3px;
+    }
+
+    /* INSHALLAH */
+    .inshallah {
+      font-size: 32px;
+      color: var(--gold);
+      margin: 16px 0 18px;
+      font-family: 'Scheherazade New', 'Traditional Arabic', serif;
+      line-height: 1.5;
+    }
+
+    /* VENUE */
+    .venue {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      line-height: 2;
+      font-weight: 500;
+    }
+
+    /* COUNTDOWN */
+    .countdown-wrap {
+      margin: 22px auto 0;
+      padding: 16px 20px;
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      background: rgba(10, 25, 16, 0.45);
+      border-radius: 2px;
+      width: fit-content;
+      min-width: 260px;
+    }
+
+    .countdown-label {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      letter-spacing: 4px;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+    }
+
+    .countdown-grid {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .countdown-num {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1;
+      min-width: 52px;
+      text-align: center;
+      background: rgba(8, 20, 12, 0.55);
+      border: 1px solid rgba(201, 168, 76, 0.28);
+      padding: 6px 4px;
+      border-radius: 2px;
+    }
+
+    .countdown-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 7px;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+    }
+
+    .countdown-colon {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+    }
+
+    /* RSVP BUTTONS */
+    .rsvp-section {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .rsvp-question {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .btn-yes,
+    .btn-no {
+      width: 100%;
+      max-width: 300px;
+      padding: 14px 24px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      border-radius: 1px;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #a87d2a, #c9a84c);
+      color: #0d2b20;
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+    }
+
+    .btn-yes:hover {
+      background: linear-gradient(135deg, #c9a84c, #e2c97a);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201, 168, 76, 0.45);
+    }
+
+    .btn-no {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.45);
+    }
+
+    .btn-no:hover {
+      background: rgba(201, 168, 76, 0.08);
+      border-color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    /* STAGGER ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .anim-1 {
+      animation: fadeUp 1s 0.4s both;
+    }
+
+    .anim-2 {
+      animation: fadeUp 1s 0.6s both;
+    }
+
+    .anim-3 {
+      animation: fadeUp 1s 0.8s both;
+    }
+
+    .anim-4 {
+      animation: fadeUp 1s 1.0s both;
+    }
+
+    .anim-5 {
+      animation: fadeUp 1s 1.2s both;
+    }
+
+    .anim-6 {
+      animation: fadeUp 1s 1.4s both;
+    }
+
+    .anim-7 {
+      animation: fadeUp 1s 1.6s both;
+    }
+
+    .anim-8 {
+      animation: fadeUp 1s 1.8s both;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: rgba(201, 168, 76, 0.45);
+    }
+
+    @media (max-width: 520px) {
+      .card {
+        padding: 60px 28px 44px;
+      }
+
+      .name-script {
+        font-size: 46px;
+      }
+
+      nav {
+        padding: 14px 20px;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .floral {
+        width: 170px;
+        height: 170px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PETALS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const colors = ['#c9a84c', '#e2c97a', '#a87d2a', '#d4b060', '#b89040'];
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < 18; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.cssText = `
+        left: ${Math.random() * 100}vw;
+        background: ${colors[Math.floor(Math.random() * colors.length)]};
+        animation-duration: ${6 + Math.random() * 8}s;
+        animation-delay: ${Math.random() * 10}s;
+        width: ${8 + Math.random() * 10}px;
+        height: ${12 + Math.random() * 14}px;
+      `;
+        frag.appendChild(p);
+      }
+      document.body.prepend(frag);
+    });
+  </script>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-monogram">J &amp; B</div>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="confirmation.html">DETAILS</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CARD -->
+  <div class="hero">
+    <div class="card">
+
+      <!-- Gold Leaf corners -->
+      <div class="floral floral-tl">
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85">
+            <!-- Central stem -->
+            <path d="M30,30 Q80,60 120,100 Q150,130 170,180" stroke="#c9a84c" stroke-width="1.2" fill="none" />
+            <!-- Leaf 1 -->
+            <path d="M55,48 Q90,30 110,55 Q85,72 55,48Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M55,48 Q82,42 110,55" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="65" y1="45" x2="85" y2="56" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="78" y1="40" x2="95" y2="53" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="92" y1="38" x2="105" y2="53" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <!-- Leaf 2 -->
+            <path d="M85,78 Q125,55 148,80 Q118,100 85,78Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M85,78 Q116,65 148,80" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="97" y1="74" x2="118" y2="85" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="110" y1="69" x2="130" y2="82" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="125" y1="66" x2="142" y2="79" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <!-- Leaf 3 -->
+            <path d="M118,112 Q155,90 175,118 Q145,136 118,112Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M118,112 Q148,100 175,118" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="130" y1="108" x2="150" y2="120" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="143" y1="103" x2="162" y2="117" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="158" y1="100" x2="173" y2="116" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <!-- Leaf 4 -->
+            <path d="M145,148 Q178,128 195,158 Q165,173 145,148Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M145,148 Q172,138 195,158" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="157" y1="144" x2="174" y2="156" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="170" y1="139" x2="185" y2="155" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <!-- Small accent leaves -->
+            <path d="M40,65 Q65,50 72,70 Q50,80 40,65Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+            <path d="M30,85 Q55,70 60,90 Q38,100 30,85Z" fill="none" stroke="#c9a84c" stroke-width="0.7"
+              opacity="0.6" />
+            <line x1="45" y1="63" x2="60" y2="72" stroke="#c9a84c" stroke-width="0.4" opacity="0.5" />
+            <line x1="35" y1="83" x2="50" y2="92" stroke="#c9a84c" stroke-width="0.4" opacity="0.5" />
+          </g>
+        </svg>
+      </div>
+      <div class="floral floral-tr">
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85" transform="scale(-1,1) translate(-220,0)">
+            <path d="M30,30 Q80,60 120,100 Q150,130 170,180" stroke="#c9a84c" stroke-width="1.2" fill="none" />
+            <path d="M55,48 Q90,30 110,55 Q85,72 55,48Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M55,48 Q82,42 110,55" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="65" y1="45" x2="85" y2="56" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="78" y1="40" x2="95" y2="53" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="92" y1="38" x2="105" y2="53" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M85,78 Q125,55 148,80 Q118,100 85,78Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M85,78 Q116,65 148,80" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="97" y1="74" x2="118" y2="85" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="110" y1="69" x2="130" y2="82" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="125" y1="66" x2="142" y2="79" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M118,112 Q155,90 175,118 Q145,136 118,112Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M118,112 Q148,100 175,118" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="130" y1="108" x2="150" y2="120" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="143" y1="103" x2="162" y2="117" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M145,148 Q178,128 195,158 Q165,173 145,148Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M145,148 Q172,138 195,158" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="157" y1="144" x2="174" y2="156" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M40,65 Q65,50 72,70 Q50,80 40,65Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+            <path d="M30,85 Q55,70 60,90 Q38,100 30,85Z" fill="none" stroke="#c9a84c" stroke-width="0.7"
+              opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+      <div class="floral floral-bl">
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85" transform="scale(1,-1) translate(0,-220)">
+            <path d="M30,30 Q80,60 120,100 Q150,130 170,180" stroke="#c9a84c" stroke-width="1.2" fill="none" />
+            <path d="M55,48 Q90,30 110,55 Q85,72 55,48Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M55,48 Q82,42 110,55" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="65" y1="45" x2="85" y2="56" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="78" y1="40" x2="95" y2="53" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="92" y1="38" x2="105" y2="53" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M85,78 Q125,55 148,80 Q118,100 85,78Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M85,78 Q116,65 148,80" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="97" y1="74" x2="118" y2="85" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="110" y1="69" x2="130" y2="82" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M118,112 Q155,90 175,118 Q145,136 118,112Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M118,112 Q148,100 175,118" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="130" y1="108" x2="150" y2="120" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M145,148 Q178,128 195,158 Q165,173 145,148Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M145,148 Q172,138 195,158" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <path d="M40,65 Q65,50 72,70 Q50,80 40,65Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+            <path d="M30,85 Q55,70 60,90 Q38,100 30,85Z" fill="none" stroke="#c9a84c" stroke-width="0.7"
+              opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+      <div class="floral floral-br">
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85" transform="scale(-1,-1) translate(-220,-220)">
+            <path d="M30,30 Q80,60 120,100 Q150,130 170,180" stroke="#c9a84c" stroke-width="1.2" fill="none" />
+            <path d="M55,48 Q90,30 110,55 Q85,72 55,48Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M55,48 Q82,42 110,55" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="65" y1="45" x2="85" y2="56" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="78" y1="40" x2="95" y2="53" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="92" y1="38" x2="105" y2="53" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M85,78 Q125,55 148,80 Q118,100 85,78Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M85,78 Q116,65 148,80" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="97" y1="74" x2="118" y2="85" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="110" y1="69" x2="130" y2="82" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M118,112 Q155,90 175,118 Q145,136 118,112Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M118,112 Q148,100 175,118" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="130" y1="108" x2="150" y2="120" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M145,148 Q178,128 195,158 Q165,173 145,148Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M145,148 Q172,138 195,158" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <path d="M40,65 Q65,50 72,70 Q50,80 40,65Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+            <path d="M30,85 Q55,70 60,90 Q38,100 30,85Z" fill="none" stroke="#c9a84c" stroke-width="0.7"
+              opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="content">
+        <div class="anim-1">
+          <div class="bismillah-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+          <div class="bismillah-en">IN THE NAME OF ALLAH<br>THE MOST MERCIFUL</div>
+        </div>
+
+        <div class="divider anim-2"></div>
+
+        <p class="together anim-2">TOGETHER WITH THEIR FAMILIES</p>
+
+        <div class="anim-3">
+          <div class="name-script">Muhammed Junaid</div>
+          <div class="name-label">SON OF MR &amp; MRS Abdul Jaleel</div>
+        </div>
+
+        <span class="ampersand anim-4">&amp;</span>
+
+        <div class="anim-4">
+          <div class="name-script">Bride</div>
+          <div class="name-label">DAUGHTER OF MR &amp; MRS bride</div>
+        </div>
+
+        <p class="invite-text anim-5">INVITE YOU TO CELEBRATE THEIR<br>NIKAH CEREMONY</p>
+
+        <div class="date-block anim-5">
+          <div class="date-month">AUGUST</div>
+          <div class="date-row">
+            <div class="date-rule"></div>
+            <div class="date-inner">
+              <span class="date-day-name">SUNDAY</span>
+              <span class="date-num">18</span>
+              <span class="date-time">6:00 PM</span>
+            </div>
+            <div class="date-rule"></div>
+          </div>
+          <div class="date-year">2 0 2 6</div>
+        </div>
+
+        <div class="inshallah anim-6">إِنْ شَاءَ اَللَّهُ</div>
+
+        <div class="venue anim-6">
+          VENUE NAME<br>
+          ADDRESS INSERTED<br>
+          HERE
+        </div>
+
+        <!-- COUNTDOWN -->
+        <div class="countdown-wrap anim-7">
+          <div class="countdown-label">COUNTING DOWN TO THE BIG DAY</div>
+          <div class="countdown-grid">
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-days">00</div>
+              <div class="countdown-sub">DAYS</div>
+            </div>
+            <div class="countdown-colon">:</div>
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-hours">00</div>
+              <div class="countdown-sub">HRS</div>
+            </div>
+            <div class="countdown-colon">:</div>
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-mins">00</div>
+              <div class="countdown-sub">MIN</div>
+            </div>
+            <div class="countdown-colon">:</div>
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-secs">00</div>
+              <div class="countdown-sub">SEC</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RSVP BUTTONS -->
+        <div class="rsvp-section anim-8">
+          <p class="rsvp-question">Will you attend?</p>
+          <a href="rsvp.html" class="btn-yes">YES, IN SHA ALLAH!</a>
+          <a href="decline.html" class="btn-no">UNFORTUNATELY, I CAN'T MAKE IT</a>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /card -->
+  </div><!-- /hero -->
+
+  <footer>بِسْمِ اللَّهِ &nbsp;·&nbsp; JUNAID & BRIDE &nbsp;·&nbsp; AUGUST 2026 &nbsp;·&nbsp; Created by Junaid
+    Cheerangan</footer>
+
+  <script>
+    /* ========= GUEST PARAMS ========= */
+    const params = new URLSearchParams(window.location.search);
+    const guestId = params.get("id");
+    const guestName = params.get("name");
+
+    /* ========= BEAUTIFUL WELCOME SCREEN ========= */
+    if (guestId || guestName) {
+      const nameText = guestName
+        ? decodeURIComponent(guestName)
+        : "Honoured Guest";
+
+      const overlay = document.createElement("div");
+      overlay.id = "welcomeOverlay";
+
+      overlay.innerHTML = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:linear-gradient(135deg,#0c2318,#163022,#0e2418);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      text-align:center;
+      padding:20px;
+    ">
+      <div style="animation:fadeUp 1s ease;">
+        
+        <div style="
+          font-family:'Dancing Script',cursive;
+          font-size:64px;
+          color:#c9a84c;
+          line-height:1;
+        ">
+          Welcome
+        </div>
+
+        <div style="
+          margin-top:14px;
+          font-family:'Cormorant Garamond',serif;
+          font-size:34px;
+          color:#e8d9b0;
+          font-style:italic;
+        ">
+          ${nameText}
+        </div>
+
+        <div style="
+          width:120px;
+          height:1px;
+          background:#c9a84c;
+          margin:22px auto;
+        "></div>
+
+        <div style="
+          font-family:'Cinzel',serif;
+          font-size:10px;
+          letter-spacing:4px;
+          color:#c9a84c;
+        ">
+          YOU ARE CORDIALLY INVITED
+        </div>
+
+      </div>
+    </div>
+  `;
+
+      document.body.appendChild(overlay);
+
+      /* Fade out quickly — don't make guests wait */
+      setTimeout(() => {
+        overlay.style.transition = "opacity .6s ease";
+        overlay.style.opacity = "0";
+        setTimeout(() => overlay.remove(), 600);
+      }, 1200);  // 1.2s is enough to read the welcome
+    }
+
+    /* ========= KEEP GUEST ID IN RSVP + DECLINE BUTTONS ========= */
+    if (guestId) {
+      const btnYes = document.querySelector(".btn-yes");
+      const btnNo = document.querySelector(".btn-no");
+      btnYes.href = "rsvp.html?id=" + guestId + (guestName ? "&name=" + guestName : "");
+      btnNo.href = "decline.html?id=" + guestId;
+    }
+
+    /* ========= COUNTDOWN ========= */
+    function updateCountdown() {
+      const target = new Date('2026-08-18T18:00:00');
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '00';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent = '00';
+        document.getElementById('cd-secs').textContent = '00';
+        return;
+      }
+
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+
+</html>

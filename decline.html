@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You — Junaid & Bride</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Cinzel:wght@400;500;600&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+    :root {
+      --cream: #f5ede0;
+      --parchment: #ede0cc;
+      --gold: #c9a84c;
+      --gold-light: #e2c97a;
+      --gold-deep: #a87d2a;
+      --rust: #b07040;
+      --text: #e8d9b0;
+      --soft: #d4b866;
+      --green-dark: #0d2b20;
+      --green-mid: #153828;
+      --green-marble: #1a3d2b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse 900px 600px at 20% 30%, rgba(10, 50, 30, 0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 800px at 80% 70%, rgba(5, 30, 18, 0.6) 0%, transparent 70%),
+        linear-gradient(160deg, #0c2318 0%, #163022 25%, #0e2a1c 50%, #112818 75%, #0a1f14 100%);
+      min-height: 100vh;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(10, 30, 18, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.35);
+    }
+
+    .nav-monogram {
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      background:
+        radial-gradient(ellipse 340px 260px at 18% 22%, rgba(22, 68, 44, 0.70) 0%, transparent 65%),
+        radial-gradient(ellipse 260px 340px at 82% 65%, rgba(12, 42, 26, 0.75) 0%, transparent 65%),
+        linear-gradient(155deg, #122a1c 0%, #0e2418 30%, #163222 55%, #0c2016 80%, #111e15 100%);
+      border-radius: 2px;
+      overflow: hidden;
+      padding: 64px 44px 52px;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(201, 168, 76, 0.25),
+        inset 0 0 80px rgba(10, 30, 18, 0.4);
+      animation: fadeUp 0.9s 0.2s both;
+      text-align: center;
+    }
+
+    .floral {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .floral-tl {
+      top: -10px;
+      left: -10px;
+    }
+
+    .floral-br {
+      bottom: -10px;
+      right: -10px;
+      transform: scaleX(-1) scaleY(-1);
+    }
+
+    .inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .arabic {
+      font-size: 30px;
+      color: var(--gold);
+      font-family: 'Scheherazade New', 'Traditional Arabic', serif;
+      line-height: 1.4;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+      margin: 16px auto;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 58px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .message {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .btn-reconsider {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #a87d2a, #c9a84c);
+      color: #0d2b20;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-decoration: none;
+      border-radius: 1px;
+      box-shadow: 0 4px 18px rgba(201, 168, 76, 0.28);
+      transition: all 0.3s;
+    }
+
+    .btn-reconsider:hover {
+      background: linear-gradient(135deg, #c9a84c, #e2c97a);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(201, 168, 76, 0.4);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .card {
+        padding: 50px 24px 40px;
+      }
+
+      nav {
+        padding: 14px 20px;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: rgba(201, 168, 76, 0.45);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-monogram">W &amp; S</div>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="confirmation.html">DETAILS</a></li>
+    </ul>
+  </nav>
+
+  <div class="card">
+
+    <div class="floral floral-tl">
+      <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.85">
+          <path d="M25,25 Q65,48 98,82 Q122,106 138,148" stroke="#c9a84c" stroke-width="1.1" fill="none" />
+          <path d="M44,40 Q72,24 90,45 Q68,59 44,40Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+          <path d="M44,40 Q68,34 90,45" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+          <line x1="53" y1="38" x2="69" y2="46" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+          <line x1="64" y1="33" x2="77" y2="43" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+          <line x1="76" y1="31" x2="86" y2="43" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+          <path d="M68,63 Q100,44 118,64 Q94,80 68,63Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+          <path d="M68,63 Q94,52 118,64" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+          <line x1="78" y1="60" x2="94" y2="69" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+          <line x1="89" y1="55" x2="104" y2="66" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+          <path d="M94,90 Q124,72 140,96 Q116,110 94,90Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+          <path d="M116,120 Q143,104 157,128 Q132,140 116,120Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+          <path d="M32,52 Q52,40 58,56 Q40,64 32,52Z" fill="none" stroke="#c9a84c" stroke-width="0.65" opacity="0.6" />
+          <path d="M24,68 Q44,56 48,72 Q30,80 24,68Z" fill="none" stroke="#c9a84c" stroke-width="0.65" opacity="0.6" />
+        </g>
+      </svg>
+    </div>
+    <div class="floral floral-br">
+      <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.85" transform="scale(-1,-1) translate(-180,-180)">
+          <path d="M25,25 Q65,48 98,82 Q122,106 138,148" stroke="#c9a84c" stroke-width="1.1" fill="none" />
+          <path d="M44,40 Q72,24 90,45 Q68,59 44,40Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+          <path d="M44,40 Q68,34 90,45" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+          <line x1="53" y1="38" x2="69" y2="46" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+          <line x1="64" y1="33" x2="77" y2="43" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+          <path d="M68,63 Q100,44 118,64 Q94,80 68,63Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+          <path d="M68,63 Q94,52 118,64" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+          <line x1="78" y1="60" x2="94" y2="69" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+          <path d="M94,90 Q124,72 140,96 Q116,110 94,90Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+          <path d="M116,120 Q143,104 157,128 Q132,140 116,120Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+          <path d="M32,52 Q52,40 58,56 Q40,64 32,52Z" fill="none" stroke="#c9a84c" stroke-width="0.65" opacity="0.6" />
+          <path d="M24,68 Q44,56 48,72 Q30,80 24,68Z" fill="none" stroke="#c9a84c" stroke-width="0.65" opacity="0.6" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="inner">
+      <div class="arabic">جَزَاكَ اللَّهُ خَيْرًا</div>
+      <div class="divider"></div>
+      <h1>Thank You</h1>
+      <p class="message">
+        We're sorry you won't be able to join us.<br>
+        Your kind thoughts and prayers<br>
+        mean the world to us.
+      </p>
+      <a href="#" id="reconsiderBtn" class="btn-reconsider">CHANGED YOUR MIND? RSVP HERE</a>
+    </div>
+  </div>
+
+  <footer>بِسْمِ اللَّهِ &nbsp;·&nbsp; JUNAID & BRIDE &nbsp;·&nbsp; AUGUST 2026 &nbsp;·&nbsp; Created by Junaid
+    Cheerangan</footer>
+
+  <script>
+    // Same API URL used across all pages
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwTCXRkaZeA7nwmHtRysG72jGh0_v-BcKwe9w4G-tharYbMtjU3Xs4IQCMdwxUhuLORFg/exec';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const guestId = urlParams.get('id') || localStorage.getItem('rsvp_id') || '';
+
+      // Always wire the "Changed your mind?" button with the correct ID
+      const btn = document.getElementById('reconsiderBtn');
+      btn.href = guestId ? ('rsvp.html?id=' + guestId) : 'rsvp.html';
+
+      // ── Record the decline in Google Sheets ──
+      // This handles TWO cases:
+      //   1. Guest came from index.html "btn-no" → API not called yet → call it now
+      //   2. Guest came from rsvp.html "decline" button → API already called → calling again is safe (idempotent)
+      if (guestId) {
+        // Save ID so other pages can use it
+        localStorage.setItem('rsvp_id', guestId);
+
+        // Fire-and-forget — don't block the page render
+        fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'submitRSVP',
+            id: guestId,
+            attending: false,
+            guestsCount: 0
+          })
+        }).catch(() => { /* silent fail — page still works */ });
+      }
+    });
+  </script>
+
+</body>
+
+</html>

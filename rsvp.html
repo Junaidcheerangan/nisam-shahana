@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP — Wasim & Sarah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Cinzel:wght@400;500;600&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+    :root {
+      --cream: #f5ede0;
+      --parchment: #ede0cc;
+      --gold: #c9a84c;
+      --gold-light: #e2c97a;
+      --gold-deep: #a87d2a;
+      --rust: #b07040;
+      --text: #e8d9b0;
+      --soft: #d4b866;
+      --green-dark: #0d2b20;
+      --green-mid: #153828;
+      --green-marble: #1a3d2b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse 900px 600px at 20% 30%, rgba(10, 50, 30, 0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 800px at 80% 70%, rgba(5, 30, 18, 0.6) 0%, transparent 70%),
+        linear-gradient(160deg, #0c2318 0%, #163022 25%, #0e2a1c 50%, #112818 75%, #0a1f14 100%);
+      min-height: 100vh;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text);
+      padding-top: 80px;
+      padding-bottom: 60px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(10, 30, 18, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.35);
+    }
+
+    .nav-monogram {
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    /* AUDIO PLAYER */
+    .audio-bar {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(10, 30, 18, 0.92);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      padding: 10px 16px;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    .audio-label {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .audio-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(201, 168, 76, 0.45);
+      background: rgba(201, 168, 76, 0.10);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 14px;
+      transition: all 0.25s;
+      flex-shrink: 0;
+    }
+
+    .audio-btn:hover {
+      background: rgba(201, 168, 76, 0.22);
+      transform: scale(1.05);
+    }
+
+    .audio-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 20px;
+    }
+
+    .audio-wave span {
+      width: 3px;
+      background: var(--gold-light);
+      border-radius: 2px;
+      animation: wave 1s ease-in-out infinite;
+    }
+
+    .audio-wave span:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .audio-wave span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .audio-wave span:nth-child(4) {
+      animation-delay: 0.45s;
+    }
+
+    .audio-wave.paused span {
+      animation-play-state: paused;
+      height: 4px !important;
+    }
+
+    @keyframes wave {
+
+      0%,
+      100% {
+        height: 6px;
+      }
+
+      50% {
+        height: 18px;
+      }
+    }
+
+    /* PAGE WRAPPER */
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    /* HEADING */
+    .page-heading {
+      text-align: center;
+      margin-bottom: 32px;
+      animation: fadeUp 0.9s 0.2s both;
+    }
+
+    .page-heading h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 72px;
+      color: var(--gold-deep);
+      line-height: 1;
+    }
+
+    .page-heading p {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: var(--gold-light);
+      margin-top: 6px;
+    }
+
+    /* CARD */
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      background:
+        radial-gradient(ellipse 340px 260px at 18% 22%, rgba(22, 68, 44, 0.70) 0%, transparent 65%),
+        radial-gradient(ellipse 260px 340px at 82% 65%, rgba(12, 42, 26, 0.75) 0%, transparent 65%),
+        linear-gradient(155deg, #122a1c 0%, #0e2418 30%, #163222 55%, #0c2016 80%, #111e15 100%);
+      border-radius: 2px;
+      overflow: hidden;
+      padding: 60px 50px 50px;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(201, 168, 76, 0.25),
+        inset 0 0 80px rgba(10, 30, 18, 0.4);
+      animation: fadeUp 0.9s 0.4s both;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 280px 200px at 15% 25%, rgba(201, 168, 76, 0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 200px 280px at 85% 60%, rgba(160, 200, 140, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* FLORAL CORNERS */
+    .floral {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      pointer-events: none;
+    }
+
+    .floral-tl {
+      top: -10px;
+      left: -10px;
+    }
+
+    .floral-tr {
+      top: -10px;
+      right: -10px;
+      transform: scaleX(-1);
+    }
+
+    .floral-bl {
+      bottom: -10px;
+      left: -10px;
+    }
+
+    .floral-br {
+      bottom: -10px;
+      right: -10px;
+      transform: scaleX(-1);
+    }
+
+    /* FORM */
+    .form-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-top {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .arabic-top {
+      font-size: 28px;
+      color: var(--gold);
+      font-family: 'Scheherazade New', 'Traditional Arabic', serif;
+      line-height: 1.4;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+      margin: 14px auto;
+    }
+
+    .form-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold-light);
+    }
+
+    /* FIELDS */
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-group label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .field-group input {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255, 248, 240, 0.7);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      border-radius: 1px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .field-group input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+    }
+
+    .field-group input::placeholder {
+      color: rgba(201, 168, 76, 0.35);
+    }
+
+    /* Number stepper */
+    .number-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      border-radius: 1px;
+      overflow: hidden;
+      background: rgba(8, 22, 14, 0.55);
+    }
+
+    .stepper-btn {
+      width: 48px;
+      height: 50px;
+      border: none;
+      background: rgba(201, 168, 76, 0.06);
+      cursor: pointer;
+      font-size: 20px;
+      color: var(--gold);
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .stepper-btn:hover {
+      background: rgba(201, 168, 76, 0.14);
+    }
+
+    .stepper-input {
+      flex: 1;
+      border: none !important;
+      box-shadow: none !important;
+      text-align: center;
+      font-size: 22px !important;
+      font-weight: 500;
+      background: transparent !important;
+    }
+
+    /* SUBMIT */
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #a87d2a, #c9a84c);
+      color: #0d2b20;
+      border: none;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      transition: all 0.3s;
+      border-radius: 1px;
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.28);
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #c9a84c, #e2c97a);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201, 168, 76, 0.4);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* DECLINE */
+    .btn-decline {
+      width: 100%;
+      padding: 13px;
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      transition: all 0.3s;
+      border-radius: 1px;
+      margin-top: 10px;
+    }
+
+    .btn-decline:hover {
+      background: rgba(201, 168, 76, 0.08);
+      border-color: rgba(201, 168, 76, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-decline:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* STATE: loading */
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(253, 245, 232, 0.4);
+      border-top-color: #fdf5e8;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ERROR */
+    .error-msg {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: #c05020;
+      text-align: center;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .note {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--gold-light);
+      text-align: center;
+      margin-top: 18px;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: rgba(201, 168, 76, 0.45);
+      margin-top: 20px;
+    }
+
+    @media (max-width: 520px) {
+      .card {
+        padding: 50px 24px 40px;
+      }
+
+      nav {
+        padding: 14px 20px;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .page-heading h1 {
+        font-size: 56px;
+      }
+
+      .floral {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND NASHEED -->
+  <!-- ⬇️ REPLACE THE src BELOW WITH YOUR NASHEED .mp3 URL -->
+  <audio id="nasheed" loop preload="auto">
+    <source src="song\background.mp4" type="audio/mpeg">
+  </audio>
+
+  <!-- AUDIO PLAYER BAR -->
+  <div class="audio-bar">
+    <div class="audio-wave" id="audioWave">
+      <span style="height:10px"></span>
+      <span style="height:16px"></span>
+      <span style="height:8px"></span>
+      <span style="height:14px"></span>
+    </div>
+    <div class="audio-label">NASHEED</div>
+    <button class="audio-btn" id="audioBtn" onclick="toggleAudio()">▶</button>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-monogram">J &amp; B</div>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="confirmation.html">DETAILS</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <!-- HEADING -->
+    <div class="page-heading">
+      <h1>RSVP</h1>
+      <p>KINDLY RESPOND BY 8 AUGUST 2026</p>
+    </div>
+
+    <!-- CARD -->
+    <div class="card">
+
+      <!-- Floral TL -->
+      <div class="floral floral-tl">
+        <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85">
+            <path d="M25,25 Q65,48 98,82 Q122,106 138,148" stroke="#c9a84c" stroke-width="1.1" fill="none" />
+            <path d="M44,40 Q72,24 90,45 Q68,59 44,40Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M44,40 Q68,34 90,45" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="53" y1="38" x2="69" y2="46" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="64" y1="33" x2="77" y2="43" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="76" y1="31" x2="86" y2="43" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M68,63 Q100,44 118,64 Q94,80 68,63Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M68,63 Q94,52 118,64" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="78" y1="60" x2="94" y2="69" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="89" y1="55" x2="104" y2="66" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="102" y1="53" x2="114" y2="63" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M94,90 Q124,72 140,96 Q116,110 94,90Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M94,90 Q118,80 140,96" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="104" y1="87" x2="120" y2="97" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="116" y1="82" x2="130" y2="94" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M116,120 Q143,104 157,128 Q132,140 116,120Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M116,120 Q138,111 157,128" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="126" y1="117" x2="140" y2="127" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M32,52 Q52,40 58,56 Q40,64 32,52Z" fill="none" stroke="#c9a84c" stroke-width="0.65"
+              opacity="0.6" />
+            <path d="M24,68 Q44,56 48,72 Q30,80 24,68Z" fill="none" stroke="#c9a84c" stroke-width="0.65"
+              opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Floral TR -->
+      <div class="floral floral-tr">
+        <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85" transform="scale(-1,1) translate(-180,0)">
+            <path d="M25,25 Q65,48 98,82 Q122,106 138,148" stroke="#c9a84c" stroke-width="1.1" fill="none" />
+            <path d="M44,40 Q72,24 90,45 Q68,59 44,40Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M44,40 Q68,34 90,45" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="53" y1="38" x2="69" y2="46" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="64" y1="33" x2="77" y2="43" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="76" y1="31" x2="86" y2="43" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M68,63 Q100,44 118,64 Q94,80 68,63Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M68,63 Q94,52 118,64" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="78" y1="60" x2="94" y2="69" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="89" y1="55" x2="104" y2="66" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M94,90 Q124,72 140,96 Q116,110 94,90Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M94,90 Q118,80 140,96" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="104" y1="87" x2="120" y2="97" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M116,120 Q143,104 157,128 Q132,140 116,120Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M116,120 Q138,111 157,128" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <path d="M32,52 Q52,40 58,56 Q40,64 32,52Z" fill="none" stroke="#c9a84c" stroke-width="0.65"
+              opacity="0.6" />
+            <path d="M24,68 Q44,56 48,72 Q30,80 24,68Z" fill="none" stroke="#c9a84c" stroke-width="0.65"
+              opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Floral BL -->
+      <div class="floral floral-bl">
+        <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85" transform="scale(1,-1) translate(0,-180)">
+            <path d="M25,25 Q65,48 98,82 Q122,106 138,148" stroke="#c9a84c" stroke-width="1.1" fill="none" />
+            <path d="M44,40 Q72,24 90,45 Q68,59 44,40Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M44,40 Q68,34 90,45" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="53" y1="38" x2="69" y2="46" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="64" y1="33" x2="77" y2="43" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M68,63 Q100,44 118,64 Q94,80 68,63Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M68,63 Q94,52 118,64" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="78" y1="60" x2="94" y2="69" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="89" y1="55" x2="104" y2="66" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M94,90 Q124,72 140,96 Q116,110 94,90Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M94,90 Q118,80 140,96" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <path d="M116,120 Q143,104 157,128 Q132,140 116,120Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M116,120 Q138,111 157,128" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <path d="M32,52 Q52,40 58,56 Q40,64 32,52Z" fill="none" stroke="#c9a84c" stroke-width="0.65"
+              opacity="0.6" />
+            <path d="M24,68 Q44,56 48,72 Q30,80 24,68Z" fill="none" stroke="#c9a84c" stroke-width="0.65"
+              opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Floral BR -->
+      <div class="floral floral-br">
+        <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85" transform="scale(-1,-1) translate(-180,-180)">
+            <path d="M25,25 Q65,48 98,82 Q122,106 138,148" stroke="#c9a84c" stroke-width="1.1" fill="none" />
+            <path d="M44,40 Q72,24 90,45 Q68,59 44,40Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M44,40 Q68,34 90,45" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="53" y1="38" x2="69" y2="46" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <line x1="64" y1="33" x2="77" y2="43" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M68,63 Q100,44 118,64 Q94,80 68,63Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M68,63 Q94,52 118,64" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <line x1="78" y1="60" x2="94" y2="69" stroke="#c9a84c" stroke-width="0.45" opacity="0.7" />
+            <path d="M94,90 Q124,72 140,96 Q116,110 94,90Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M94,90 Q118,80 140,96" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <path d="M116,120 Q143,104 157,128 Q132,140 116,120Z" fill="none" stroke="#c9a84c" stroke-width="0.85" />
+            <path d="M116,120 Q138,111 157,128" stroke="#c9a84c" stroke-width="0.55" fill="none" />
+            <path d="M32,52 Q52,40 58,56 Q40,64 32,52Z" fill="none" stroke="#c9a84c" stroke-width="0.65"
+              opacity="0.6" />
+            <path d="M24,68 Q44,56 48,72 Q30,80 24,68Z" fill="none" stroke="#c9a84c" stroke-width="0.65"
+              opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="form-inner">
+        <div class="form-top">
+          <div class="arabic-top">إِنْ شَاءَ اَللَّهُ</div>
+          <div class="divider"></div>
+          <!-- Personalized welcome — populated via URL ?id= param -->
+          <div id="welcomeWrap" style="display:none;margin-bottom:8px;">
+            <div style="font-family:'Dancing Script',cursive;font-size:42px;color:#c9a84c;line-height:1.1;"
+              id="welcomeName"></div>
+            <div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;color:#e2c97a;margin-top:4px;">YOU
+              ARE CORDIALLY INVITED</div>
+          </div>
+          <div id="noIdWrap" style="display:none;">
+            <div
+              style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:#e2c97a;padding:10px;border:1px solid rgba(201,168,76,0.3);border-radius:2px;">
+              INVALID INVITE LINK — PLEASE USE YOUR PERSONAL LINK
+            </div>
+          </div>
+          <div class="form-subtitle" id="formSubtitle">PLEASE FILL IN YOUR DETAILS BELOW</div>
+        </div>
+
+        <div class="field-group">
+          <label>HOW MANY FAMILY MEMBERS WILL ATTEND?</label>
+          <div class="number-stepper">
+            <button class="stepper-btn" onclick="changeCount(-1)">−</button>
+            <input type="number" id="guestCount" class="stepper-input" value="1" min="1" max="20" readonly>
+            <button class="stepper-btn" onclick="changeCount(1)">+</button>
+          </div>
+        </div>
+
+        <button class="btn-submit" id="submitBtn" onclick="submitRSVP()">
+          CONFIRM ATTENDANCE
+        </button>
+
+        <button class="btn-decline" id="declineBtn" onclick="declineRSVP()">
+          UNFORTUNATELY I CAN'T MAKE IT
+        </button>
+
+        <div class="error-msg" id="errorMsg">UNABLE TO SUBMIT — INVALID INVITE LINK</div>
+
+        <p class="note">
+          JazakAllah Khayran for your response.<br>
+          We look forward to celebrating with you.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer>بِسْمِ اللَّهِ &nbsp;·&nbsp; JUNAID & BRIDE &nbsp;·&nbsp; AUGUST 2026 &nbsp;·&nbsp; Created by Junaid
+    Cheerangan</footer>
+
+  <script>
+    // ⬇️ REPLACE WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwdG81Mb1TwU6eRsuydAsghoaFYiCeQyhPdvA-kiDv6X1wKnzjSotbZgFpcZXiQQO0sDw/exec';
+
+    let guestId = null;
+    let guestName = null;
+
+    // ── Helper: show name instantly ──
+    function showGuestName(name) {
+      guestName = name;
+      localStorage.setItem('rsvp_name', name);
+      document.getElementById('welcomeName').textContent = name;
+      document.getElementById('welcomeWrap').style.display = 'block';
+      document.getElementById('formSubtitle').style.display = 'none';
+    }
+
+    // ── Helper: show invalid link state ──
+    function showInvalid() {
+      document.getElementById('noIdWrap').style.display = 'block';
+      document.getElementById('welcomeWrap').style.display = 'none';
+      document.getElementById('formSubtitle').style.display = 'none';
+      document.getElementById('submitBtn').disabled = true;
+      document.getElementById('declineBtn').disabled = true;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      // Name can arrive in the URL when coming from the index.html WhatsApp link
+      const nameFromUrl = params.get('name');
+
+      // ── START AUDIO IMMEDIATELY — completely independent of API ──
+      const audio = document.getElementById('nasheed');
+      audio.volume = 0.45;
+
+      // Compensate for time spent during page navigation
+      const savedTime = parseFloat(sessionStorage.getItem('nasheed_time') || '0');
+      const savedAt = parseInt(sessionStorage.getItem('nasheed_saved_at') || '0');
+      const wasPlaying = sessionStorage.getItem('nasheed_playing') === '1';
+      sessionStorage.removeItem('nasheed_time');
+      sessionStorage.removeItem('nasheed_saved_at');
+      sessionStorage.removeItem('nasheed_playing');
+
+      if (wasPlaying && savedTime > 0) {
+        // Add the milliseconds that elapsed during navigation so playback is seamless
+        const elapsedSec = savedAt ? (Date.now() - savedAt) / 1000 : 0;
+        audio.currentTime = Math.max(0, savedTime + elapsedSec);
+      }
+
+      audio.play().then(() => {
+        document.getElementById('audioBtn').textContent = '⏸';
+        document.getElementById('audioWave').classList.remove('paused');
+      }).catch(() => {
+        document.getElementById('audioWave').classList.add('paused');
+      });
+
+      // No ID in URL → invalid link
+      if (!id) { showInvalid(); return; }
+
+      guestId = id;
+      localStorage.setItem('rsvp_id', id);
+
+      // Restore previous guest count
+      const cachedCount = localStorage.getItem('rsvp_count_' + id);
+      if (cachedCount) document.getElementById('guestCount').value = cachedCount;
+
+      // ── INSTANT (frame 0): resolve name from any available cache ──
+      // Priority: per-ID localStorage → URL param → generic localStorage key
+      const cachedName =
+        localStorage.getItem('rsvp_name_' + id) ||
+        (nameFromUrl ? decodeURIComponent(nameFromUrl) : null) ||
+        localStorage.getItem('rsvp_name') || null;
+
+      if (cachedName) {
+        localStorage.setItem('rsvp_name_' + id, cachedName);
+        showGuestName(cachedName); // ← user sees name before API even starts
+      }
+
+      // ── BACKGROUND: verify/refresh from API without blocking UI ──
+      fetch(`${API_URL}?action=getGuest&id=${id}`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.guest) {
+            localStorage.setItem('rsvp_name_' + id, data.guest.name);
+            showGuestName(data.guest.name);
+          } else if (!cachedName) {
+            showInvalid(); // not found and no cache
+          }
+        })
+        .catch(() => {
+          if (!cachedName) showInvalid(); // network error + no cache
+        });
+    });
+
+    // ── Stepper ──
+    function changeCount(delta) {
+      const input = document.getElementById('guestCount');
+      const val = parseInt(input.value) + delta;
+      if (val >= 1 && val <= 20) input.value = val;
+    }
+
+    // ── Audio toggle ──
+    function toggleAudio() {
+      const audio = document.getElementById('nasheed');
+      const btn = document.getElementById('audioBtn');
+      const wave = document.getElementById('audioWave');
+      if (audio.paused) {
+        audio.play(); btn.textContent = '⏸'; wave.classList.remove('paused');
+      } else {
+        audio.pause(); btn.textContent = '▶'; wave.classList.add('paused');
+      }
+    }
+
+    // ── Save nasheed position + timestamp so resume is seamless ──
+    function saveNasheedState() {
+      const nasheed = document.getElementById('nasheed');
+      if (nasheed && !nasheed.paused) {
+        sessionStorage.setItem('nasheed_time', nasheed.currentTime);
+        sessionStorage.setItem('nasheed_saved_at', Date.now()); // for time compensation
+        sessionStorage.setItem('nasheed_playing', '1');
+      }
+    }
+
+    // Fallback: also save on any page unload (browser back/forward, tab close, etc.)
+    window.addEventListener('pagehide', saveNasheedState);
+
+    // ── Disable both buttons while submitting ──
+    function lockButtons(which) {
+      document.getElementById('submitBtn').disabled = true;
+      document.getElementById('declineBtn').disabled = true;
+      if (which === 'submit') {
+        document.getElementById('submitBtn').innerHTML = '<span class="spinner"></span>SUBMITTING...';
+      } else {
+        document.getElementById('declineBtn').textContent = 'SENDING...';
+      }
+    }
+
+    // ── Confirm attendance ──
+    async function submitRSVP() {
+      if (!guestId) return;
+      const count = document.getElementById('guestCount').value;
+      localStorage.setItem('rsvp_name', guestName || '');
+      localStorage.setItem('rsvp_count', count);
+      lockButtons('submit');
+      try {
+        await fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'submitRSVP', id: guestId, attending: true, guestsCount: parseInt(count) })
+        });
+      } catch (e) { /* continue even on error */ }
+      saveNasheedState();
+      window.location.href = 'confirmation.html?id=' + guestId;
+    }
+
+    // ── Decline ──
+    async function declineRSVP() {
+      if (!guestId) return;
+      localStorage.setItem('rsvp_name', guestName || '');
+      localStorage.setItem('rsvp_count', '0');
+      lockButtons('decline');
+      try {
+        await fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'submitRSVP', id: guestId, attending: false, guestsCount: 0 })
+        });
+      } catch (e) { /* continue even on error */ }
+      saveNasheedState();
+      window.location.href = 'decline.html?id=' + guestId;
+    }
+  </script>
+</body>
+
+</html>

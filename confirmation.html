@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmed — JUnaid & Bride</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Cinzel:wght@400;500;600&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+    :root {
+      --cream: #f5ede0;
+      --parchment: #ede0cc;
+      --gold: #c9a84c;
+      --gold-light: #e2c97a;
+      --gold-deep: #a87d2a;
+      --rust: #b07040;
+      --text: #e8d9b0;
+      --soft: #d4b866;
+      --green-dark: #0d2b20;
+      --green-mid: #153828;
+      --green-marble: #1a3d2b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse 900px 600px at 20% 30%, rgba(10, 50, 30, 0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 800px at 80% 70%, rgba(5, 30, 18, 0.6) 0%, transparent 70%),
+        linear-gradient(160deg, #0c2318 0%, #163022 25%, #0e2a1c 50%, #112818 75%, #0a1f14 100%);
+      min-height: 100vh;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text);
+      padding-top: 80px;
+      padding-bottom: 60px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(10, 30, 18, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.35);
+    }
+
+    .nav-monogram {
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    /* PETALS */
+    .petal {
+      position: fixed;
+      border-radius: 50% 0 50% 0;
+      opacity: 0;
+      animation: petalFall linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes petalFall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.5;
+      }
+
+      90% {
+        opacity: 0.25;
+      }
+
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* PAGE */
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    /* CARD */
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      background:
+        radial-gradient(ellipse 340px 260px at 18% 22%, rgba(22, 68, 44, 0.70) 0%, transparent 65%),
+        radial-gradient(ellipse 260px 340px at 82% 65%, rgba(12, 42, 26, 0.75) 0%, transparent 65%),
+        linear-gradient(155deg, #122a1c 0%, #0e2418 30%, #163222 55%, #0c2016 80%, #111e15 100%);
+      border-radius: 2px;
+      overflow: hidden;
+      padding: 70px 50px 56px;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(201, 168, 76, 0.25),
+        inset 0 0 80px rgba(10, 30, 18, 0.4);
+      animation: fadeUp 0.9s 0.2s both;
+      text-align: center;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 280px 200px at 15% 25%, rgba(201, 168, 76, 0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 200px 280px at 85% 60%, rgba(160, 200, 140, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* FLORAL CORNERS */
+    .floral {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      pointer-events: none;
+    }
+
+    .floral-tl {
+      top: -12px;
+      left: -12px;
+    }
+
+    .floral-tr {
+      top: -12px;
+      right: -12px;
+      transform: scaleX(-1);
+    }
+
+    .floral-bl {
+      bottom: -12px;
+      left: -12px;
+    }
+
+    .floral-br {
+      bottom: -12px;
+      right: -12px;
+      transform: scaleX(-1);
+    }
+
+    /* CONTENT */
+    .inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* CHECKMARK */
+    .check-ring {
+      width: 72px;
+      height: 72px;
+      border: 2px solid rgba(201, 168, 76, 0.45);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      background: rgba(8, 22, 14, 0.4);
+      animation: popIn 0.7s 0.5s both;
+    }
+
+    .check-ring svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.4);
+        opacity: 0;
+      }
+
+      70% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* HEADINGS */
+    .heading-main {
+      font-family: 'Dancing Script', cursive;
+      font-size: 64px;
+      color: var(--gold);
+      line-height: 1;
+      animation: fadeUp 0.9s 0.4s both;
+      text-shadow: 0 2px 14px rgba(201, 168, 76, 0.2);
+    }
+
+    .heading-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: var(--gold);
+      margin-top: 10px;
+      line-height: 1.7;
+      animation: fadeUp 0.9s 0.55s both;
+    }
+
+    .guest-name-display {
+      font-family: 'Dancing Script', cursive;
+      font-size: 38px;
+      color: var(--gold);
+      animation: fadeUp 0.9s 0.65s both;
+      margin-top: 4px;
+    }
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+      margin: 20px auto;
+    }
+
+    /* DATE + DETAILS BLOCK */
+    .details-block {
+      margin: 0 auto;
+      padding: 20px 24px;
+      border: 1px solid rgba(201, 168, 76, 0.28);
+      background: rgba(8, 22, 14, 0.4);
+      border-radius: 2px;
+      animation: fadeUp 0.9s 0.7s both;
+    }
+
+    .details-label {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      letter-spacing: 4px;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+    }
+
+    .details-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .details-icon {
+      color: var(--gold-light);
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .details-text {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      color: var(--gold);
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    /* GUEST SUMMARY */
+    .guest-summary {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold-light);
+      margin-top: 10px;
+    }
+
+    /* COUNTDOWN */
+    .countdown-wrap {
+      margin: 24px auto 0;
+      padding: 18px 20px;
+      border: 1px solid rgba(201, 168, 76, 0.28);
+      background: rgba(8, 22, 14, 0.4);
+      border-radius: 2px;
+      animation: fadeUp 0.9s 0.8s both;
+    }
+
+    .countdown-label {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      letter-spacing: 4px;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    .countdown-grid {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .countdown-num {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1;
+      min-width: 52px;
+      text-align: center;
+      background: rgba(8, 20, 12, 0.55);
+      border: 1px solid rgba(201, 168, 76, 0.28);
+      padding: 8px 4px;
+      border-radius: 2px;
+    }
+
+    .countdown-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 7px;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+    }
+
+    .countdown-colon {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+    }
+
+    /* BUTTONS */
+    .buttons-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 28px;
+      animation: fadeUp 0.9s 0.9s both;
+    }
+
+    .btn-location {
+      display: block;
+      padding: 15px 20px;
+      background: linear-gradient(135deg, #a87d2a, #c9a84c);
+      color: #0d2b20;
+      border: none;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3.5px;
+      transition: all 0.3s;
+      border-radius: 1px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.28);
+      text-align: center;
+    }
+
+    .btn-location:hover {
+      background: linear-gradient(135deg, #c9a84c, #e2c97a);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201, 168, 76, 0.4);
+    }
+
+    .btn-edit {
+      display: block;
+      padding: 14px 20px;
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.45);
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      transition: all 0.3s;
+      border-radius: 1px;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-edit:hover {
+      background: rgba(201, 168, 76, 0.08);
+      border-color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .inshallah-bottom {
+      font-size: 26px;
+      color: var(--gold-light);
+      margin-top: 20px;
+      font-family: 'Scheherazade New', 'Traditional Arabic', serif;
+      animation: fadeUp 0.9s 1.0s both;
+      line-height: 1.5;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: rgba(201, 168, 76, 0.45);
+      margin-top: 20px;
+    }
+
+    /* AUDIO PLAYER */
+    .audio-bar {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(10, 30, 18, 0.92);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      padding: 10px 16px;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    .audio-label {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .audio-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(201, 168, 76, 0.45);
+      background: rgba(201, 168, 76, 0.10);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 14px;
+      transition: all 0.25s;
+      flex-shrink: 0;
+    }
+
+    .audio-btn:hover {
+      background: rgba(201, 168, 76, 0.22);
+      transform: scale(1.05);
+    }
+
+    .audio-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 20px;
+    }
+
+    .audio-wave span {
+      width: 3px;
+      background: var(--gold-light);
+      border-radius: 2px;
+      animation: wave 1s ease-in-out infinite;
+    }
+
+    .audio-wave span:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .audio-wave span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .audio-wave span:nth-child(4) {
+      animation-delay: 0.45s;
+    }
+
+    .audio-wave.paused span {
+      animation-play-state: paused;
+      height: 4px !important;
+    }
+
+    @keyframes wave {
+
+      0%,
+      100% {
+        height: 6px;
+      }
+
+      50% {
+        height: 18px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .card {
+        padding: 56px 24px 44px;
+      }
+
+      nav {
+        padding: 14px 20px;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .heading-main {
+        font-size: 52px;
+      }
+
+      .floral {
+        width: 160px;
+        height: 160px;
+      }
+
+      .countdown-num {
+        font-size: 22px;
+        min-width: 44px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND NASHEED -->
+  <!-- ⬇️ REPLACE THE src BELOW WITH YOUR NASHEED .mp3 URL -->
+  <audio id="nasheed" loop preload="auto">
+    <source src="song\background.mp4" type="audio/mpeg">
+  </audio>
+
+  <!-- AUDIO PLAYER BAR -->
+  <div class="audio-bar">
+    <div class="audio-wave" id="audioWave">
+      <span style="height:10px"></span>
+      <span style="height:16px"></span>
+      <span style="height:8px"></span>
+      <span style="height:14px"></span>
+    </div>
+    <div class="audio-label">NASHEED</div>
+    <button class="audio-btn" id="audioBtn" onclick="toggleAudio()">▶</button>
+  </div>
+
+  <!-- Petals (deferred to avoid blocking render) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const colors = ['#c9a84c', '#e2c97a', '#a87d2a', '#d4b060', '#b89040'];
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < 22; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.cssText = `
+        left: ${Math.random() * 100}vw;
+        background: ${colors[Math.floor(Math.random() * colors.length)]};
+        animation-duration: ${5 + Math.random() * 9}s;
+        animation-delay: ${Math.random() * 8}s;
+        width: ${7 + Math.random() * 10}px;
+        height: ${10 + Math.random() * 13}px;
+      `;
+        frag.appendChild(p);
+      }
+      document.body.prepend(frag);
+    });
+  </script>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-monogram">J &amp; B</div>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="confirmation.html">DETAILS</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <div class="card">
+
+      <!-- Floral TL -->
+      <div class="floral floral-tl">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85">
+            <path d="M28,28 Q72,54 110,92 Q136,118 154,164" stroke="#c9a84c" stroke-width="1.2" fill="none" />
+            <path d="M50,45 Q80,27 100,50 Q76,66 50,45Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M50,45 Q76,38 100,50" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="60" y1="42" x2="78" y2="52" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="72" y1="37" x2="87" y2="48" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="85" y1="34" x2="97" y2="48" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M76,72 Q112,50 132,74 Q106,90 76,72Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M76,72 Q106,60 132,74" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="87" y1="68" x2="106" y2="79" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="99" y1="63" x2="116" y2="76" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="114" y1="60" x2="128" y2="73" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M106,102 Q140,82 158,108 Q130,124 106,102Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M106,102 Q134,92 158,108" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="117" y1="98" x2="135" y2="110" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="130" y1="93" x2="146" y2="106" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M130,136 Q160,118 176,144 Q148,158 130,136Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M130,136 Q154,126 176,144" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <path d="M36,60 Q58,46 64,64 Q44,72 36,60Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+            <path d="M27,78 Q50,64 54,82 Q34,90 27,78Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+      <div class="floral floral-tr">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85" transform="scale(-1,1) translate(-200,0)">
+            <path d="M28,28 Q72,54 110,92 Q136,118 154,164" stroke="#c9a84c" stroke-width="1.2" fill="none" />
+            <path d="M50,45 Q80,27 100,50 Q76,66 50,45Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M50,45 Q76,38 100,50" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="60" y1="42" x2="78" y2="52" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="72" y1="37" x2="87" y2="48" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M76,72 Q112,50 132,74 Q106,90 76,72Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M76,72 Q106,60 132,74" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="87" y1="68" x2="106" y2="79" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <line x1="99" y1="63" x2="116" y2="76" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M106,102 Q140,82 158,108 Q130,124 106,102Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M106,102 Q134,92 158,108" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="117" y1="98" x2="135" y2="110" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M130,136 Q160,118 176,144 Q148,158 130,136Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M130,136 Q154,126 176,144" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <path d="M36,60 Q58,46 64,64 Q44,72 36,60Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+            <path d="M27,78 Q50,64 54,82 Q34,90 27,78Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+      <div class="floral floral-bl">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85" transform="scale(1,-1) translate(0,-200)">
+            <path d="M28,28 Q72,54 110,92 Q136,118 154,164" stroke="#c9a84c" stroke-width="1.2" fill="none" />
+            <path d="M50,45 Q80,27 100,50 Q76,66 50,45Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M50,45 Q76,38 100,50" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="60" y1="42" x2="78" y2="52" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M76,72 Q112,50 132,74 Q106,90 76,72Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M76,72 Q106,60 132,74" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="87" y1="68" x2="106" y2="79" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M106,102 Q140,82 158,108 Q130,124 106,102Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M106,102 Q134,92 158,108" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <path d="M130,136 Q160,118 176,144 Q148,158 130,136Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M130,136 Q154,126 176,144" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <path d="M36,60 Q58,46 64,64 Q44,72 36,60Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+            <path d="M27,78 Q50,64 54,82 Q34,90 27,78Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+      <div class="floral floral-br">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85" transform="scale(-1,-1) translate(-200,-200)">
+            <path d="M28,28 Q72,54 110,92 Q136,118 154,164" stroke="#c9a84c" stroke-width="1.2" fill="none" />
+            <path d="M50,45 Q80,27 100,50 Q76,66 50,45Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M50,45 Q76,38 100,50" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <path d="M76,72 Q112,50 132,74 Q106,90 76,72Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M76,72 Q106,60 132,74" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <line x1="87" y1="68" x2="106" y2="79" stroke="#c9a84c" stroke-width="0.5" opacity="0.7" />
+            <path d="M106,102 Q140,82 158,108 Q130,124 106,102Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M106,102 Q134,92 158,108" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <path d="M130,136 Q160,118 176,144 Q148,158 130,136Z" fill="none" stroke="#c9a84c" stroke-width="0.9" />
+            <path d="M130,136 Q154,126 176,144" stroke="#c9a84c" stroke-width="0.6" fill="none" />
+            <path d="M36,60 Q58,46 64,64 Q44,72 36,60Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+            <path d="M27,78 Q50,64 54,82 Q34,90 27,78Z" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="inner">
+
+        <!-- Check ring -->
+        <div class="check-ring">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 16L13 23L26 9" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+
+        <!-- Main heading -->
+        <h1 class="heading-main">We Can't Wait!</h1>
+
+        <!-- Sub message -->
+        <p class="heading-sub">
+          Your RSVP has been received!<br>
+          We look forward to celebrating with you.
+        </p>
+
+        <!-- Guest name -->
+        <div class="guest-name-display" id="guestDisplay"></div>
+
+        <div class="divider"></div>
+
+        <!-- Event Details -->
+        <div class="details-block">
+          <div class="details-label">EVENT DETAILS</div>
+
+          <div class="details-row">
+            <span class="details-icon">🕌</span>
+            <div class="details-text">NIKAH CEREMONY</div>
+          </div>
+          <div class="details-row">
+            <span class="details-icon">📅</span>
+            <div class="details-text">SUNDAY, 18 AUGUST 2026</div>
+          </div>
+          <div class="details-row">
+            <span class="details-icon">🕕</span>
+            <div class="details-text">6:00 PM</div>
+          </div>
+          <div class="details-row">
+            <span class="details-icon">📍</span>
+            <div class="details-text">VENUE NAME<br>ADDRESS INSERTED HERE</div>
+          </div>
+
+          <div class="divider" style="margin:14px auto 10px;"></div>
+          <div class="guest-summary" id="guestSummary"></div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown-wrap">
+          <div class="countdown-label">TIME UNTIL THE BIG DAY</div>
+          <div class="countdown-grid">
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-days">00</div>
+              <div class="countdown-sub">DAYS</div>
+            </div>
+            <div class="countdown-colon">:</div>
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-hours">00</div>
+              <div class="countdown-sub">HRS</div>
+            </div>
+            <div class="countdown-colon">:</div>
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-mins">00</div>
+              <div class="countdown-sub">MIN</div>
+            </div>
+            <div class="countdown-colon">:</div>
+            <div class="countdown-unit">
+              <div class="countdown-num" id="cd-secs">00</div>
+              <div class="countdown-sub">SEC</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons-wrap">
+          <!-- ⬇️ REPLACE href WITH YOUR GOOGLE MAPS LINK -->
+          <a href="https://maps.app.goo.gl/h5WX7FXoWdrdqsZN9" target="_blank" class="btn-location">
+            📍 &nbsp; CLICK HERE FOR LOCATION
+          </a>
+          <a href="#" id="editResponseBtn" class="btn-edit">✏️ &nbsp; EDIT MY RESPONSE</a>
+        </div>
+
+        <div class="inshallah-bottom">إِنْ شَاءَ اَللَّهُ</div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>بِسْمِ اللَّهِ &nbsp;·&nbsp; JUNAID & BRIDE &nbsp;·&nbsp; AUGUST 2026 &nbsp;·&nbsp; Created by Junaid
+    Cheerangan</footer>
+
+  <script>
+    // ── Save nasheed position + timestamp so resume is seamless ──
+    function saveNasheedState() {
+      const nasheed = document.getElementById('nasheed');
+      if (nasheed && !nasheed.paused) {
+        sessionStorage.setItem('nasheed_time', nasheed.currentTime);
+        sessionStorage.setItem('nasheed_saved_at', Date.now()); // for time compensation
+        sessionStorage.setItem('nasheed_playing', '1');
+      }
+    }
+
+    // Fallback: save on any unload (browser back/forward, tab close)
+    window.addEventListener('pagehide', saveNasheedState);
+
+    // ── Toggle audio play/pause ──
+    function toggleAudio() {
+      const audio = document.getElementById('nasheed');
+      const btn = document.getElementById('audioBtn');
+      const wave = document.getElementById('audioWave');
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = '⏸';
+        wave.classList.remove('paused');
+      } else {
+        audio.pause();
+        btn.textContent = '▶';
+        wave.classList.add('paused');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      // ── Resolve guest ID from URL or localStorage ──
+      const urlParams = new URLSearchParams(window.location.search);
+      const guestId = urlParams.get('id') || localStorage.getItem('rsvp_id') || '';
+
+      // ── Wire "Edit My Response" button: save audio state BEFORE navigating ──
+      const editBtn = document.getElementById('editResponseBtn');
+      if (guestId) {
+        const editHref = 'rsvp.html?id=' + guestId;
+        editBtn.href = editHref;
+        // Intercept click to save nasheed state before the page unloads
+        editBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          saveNasheedState();
+          window.location.href = editHref;
+        });
+      } else {
+        editBtn.style.display = 'none';
+      }
+
+      // ── Show guest name and count ──
+      const name = localStorage.getItem('rsvp_name') || '';
+      const count = localStorage.getItem('rsvp_count') || '1';
+      if (name) {
+        document.getElementById('guestDisplay').textContent = name;
+        document.getElementById('guestSummary').textContent =
+          `ATTENDING: ${count} ${parseInt(count) === 1 ? 'GUEST' : 'GUESTS'}`;
+      }
+
+      // ── Resume nasheed with time compensation for navigation gap ──
+      const audio = document.getElementById('nasheed');
+      audio.volume = 0.45;
+      const savedTime = parseFloat(sessionStorage.getItem('nasheed_time') || '0');
+      const savedAt = parseInt(sessionStorage.getItem('nasheed_saved_at') || '0');
+      const wasPlaying = sessionStorage.getItem('nasheed_playing') === '1';
+      sessionStorage.removeItem('nasheed_time');
+      sessionStorage.removeItem('nasheed_saved_at');
+      sessionStorage.removeItem('nasheed_playing');
+
+      if (wasPlaying && savedTime > 0) {
+        // Compensate for the milliseconds spent loading this page
+        const elapsedSec = savedAt ? (Date.now() - savedAt) / 1000 : 0;
+        audio.currentTime = Math.max(0, savedTime + elapsedSec);
+      }
+
+      audio.play().then(() => {
+        document.getElementById('audioBtn').textContent = '⏸';
+        document.getElementById('audioWave').classList.remove('paused');
+      }).catch(() => {
+        document.getElementById('audioWave').classList.add('paused');
+      });
+    });
+
+    // ── Countdown timer ──
+    function updateCountdown() {
+      const target = new Date('2026-08-18T18:00:00');
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        ['cd-days', 'cd-hours', 'cd-mins', 'cd-secs'].forEach(id => {
+          document.getElementById(id).textContent = '00';
+        });
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+
+</html>
